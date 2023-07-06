@@ -13,4 +13,10 @@ Welcome to JPGoncalvesNotes's documentation!
    introduction
    sphinx 
    arm
+   linux-kernel 
+   u-boot 
+   yocto
+   st-micro
+   rust 
+
 
