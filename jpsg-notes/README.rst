@@ -1,8 +1,10 @@
-Mastering The Silicon - Baremetal on Modern ARM SOC from Reset to SMP
+JPSG Personal Notes
 =====================================================================
 
-This a road for me to learn more deeply low level programming on a modern ARM SOC including arm 
-assemby programming, boot, multi processors, mmu, interrupts, uboot, linux and rust.
+This project is just a personal note taker to put everything i think 
+is important or just to remember thing for development 
+as embedded software developer. Also, i will use it to learn more about sphinx 
+and how to write better documentation.
 
 
 =======================================
@@ -20,6 +22,6 @@ on root folder of the project.
 Building Documentation 
 =======================================
 
-To create book documentation in HTML execute:
+To create documentation in HTML execute:
 .. code-block: console 
 (.venv) $ sphinx-build -b html docs/source/ docs/build/html
