@@ -23,5 +23,5 @@ Building Documentation
 =======================================
 
 To create documentation in HTML execute:
-.. code-block: console 
+.. code-block:: console 
 (.venv) $ sphinx-build -b html docs/source/ docs/build/html
