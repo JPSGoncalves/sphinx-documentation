@@ -18,7 +18,7 @@ My Developed App in Rust - FINAJJ
 * Expenses must be classified as: 
 
     * Fixa ou Variavel
-    * Type: Farmacia, Alimentacao, Carro, Moradia, Lazer, Viagem, Outros
+    * Type: Farmacia, Alimentacao, Carro, Moradia, Lazer, Pets, Viagem, Online, Outros
 
 * Must support ITAU, CAIXA e NUBANK for now 
 * Must supoort account extracs from normal account and credit card
