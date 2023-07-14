@@ -18,6 +18,7 @@ Welcome to JPGoncalvesNotes's documentation!
    yocto
    st-micro
    rust 
-   personal-finances.rst
+   vscode
+   personal-finances
 
 
