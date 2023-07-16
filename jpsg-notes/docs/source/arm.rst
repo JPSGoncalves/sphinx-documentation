@@ -5,3 +5,5 @@ ARM Arch Development
    :maxdepth: 2
 
    arm/quemu-arm.rst
+   arm/aarch32_assembly.rst
+   arm/useful.rst

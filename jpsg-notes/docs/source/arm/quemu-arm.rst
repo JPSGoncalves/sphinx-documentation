@@ -46,7 +46,7 @@ For emulating any arm system : baremetal, bootloader etc.
 Running Binaries 
 ----------------
 
-**-L** option is for passing compiler dynamic linker for quemu
+**-L** option is for passing compiler dynamic linker absolute path for quemu
 
 .. code-block:: console 
 
@@ -69,6 +69,15 @@ Using machine **vexpress-a9**
    qemu-system-arm -M vexpress-a9 -m 32M -no-reboot -nographic -monitor telnet:127.0.0.1:1234,server,nowait -kernel first-hang.bin
 
 
+Examples 
+--------
+
+Simple armv7 run whre **CROSS_CC_ARMV7** is the compiler folder path 
+(eg. **/home/jpaulosg/opt/toolchains/armv7-eabihf--glibc--stable-2022.08-1**).
+
+.. code-block:: console
+   
+   qemu-arm -L $CROSS_CC_ARMV7/arm-buildroot-linux-gnueabihf/sysroot  hello-arm
 
 Debug
 -----

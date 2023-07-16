@@ -5,5 +5,4 @@ Rust Programming Language
    :maxdepth: 2
 
    rust/tools.rst
-   rust/setup-vscode.rst
    rust/baremetal-rust.rst
