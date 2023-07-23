@@ -149,15 +149,163 @@ but new value to the data pointed by mut reference but returning the old value.
 
 **Todo**: Using reference counted values **Rc<T>** and **Arc<T>**.
 
+
+Generics and Traits
+-------------------
+
+Used to implement polymorphism in rust.
+
+Traits are like interfaces and abstract classes in other languages. 
+Traits are implemented by types.
+To define a trait just create one with its signatures methods.
+ 
+
+.. code-block:: rust 
+
+    trait Write {
+        fn write(&mut self, buf: &[u8]) -> Result<usize>;
+        fn flush(&mut self) -> Result<()>;
+        n write_all(&mut self, buf: &[u8]) -> Result<()> { ... }
+        ...
+    }
+
+To implemet a trait do: 
+
+.. code-block:: rust 
+
+    trait MyCustomTrait {
+        fn write_custom(&mut self, buf: &[u8]) -> Result<usize>;
+        fn read(&mut self) -> Result<()>;
+        n bye(&mut self, buf: &[u8]) -> Result<()> { ... }
+        ...
+    }
+
+    struct MyCustomType {} 
+
+    impl MyCustomTrait for MyCustomType {}
+
+Default behaviour can be implememented in trait definition:
+
+
+.. code-block:: rust 
+
+    trait Write {
+        fn write(&mut self, buf: &[u8]) -> Result<usize>;
+        fn flush(&mut self) -> Result<()>;
+        
+        fn write_all(&mut self, buf: &[u8]) -> Result<()> { 
+            let mut bytes_written = 0;
+            while bytes_written < buf.len() {
+                bytes_written += self.write(&buf[bytes_written..])?;
+            }
+            Ok(())       
+        }
+        
+    }
+
+A trait object defined **dyn Error** means any type that implements the **Error** 
+trait. Trait object are virtual functions and implement **dynamic dispatch** \
+(runtime polymorphism). Trait objects can't be used on their because the size of 
+the type is not know on compile type. Always use them with a pointer (reference, Box). 
+
+.. code-block:: rust 
+
+    fn set(obj: &mut dyn Error, value: i32) 
+    {
+        /// ...
+    }
+
+Is possible to declare **Subtraits**. Subtraits are like extensions to a trait.
+The syntax **trait MyTraitSecond: YourTraitFirst** means that all **MyTraitSecond** 
+are also **YourTraitFirst** and all types that implement **MyTraitSecond** 
+must implement **YourTraitFirst**.
+
+.. code-block:: rust 
+
+    trait MyTraitSecond: YourTraitFirst {
+        fn position(&self) -> (i32, i32);
+        fn facing(&self) -> Direction;
+    ...
+    }
+
+Trait functions without **self** arguments are called type associated functions.
+
+.. code-block:: rust 
+
+    trait StringSet {
+        /// Return a new empty set.
+        fn new() -> Self;
+        /// Return a set that contains all the strings in `strings`.
+        fn from_slice(strings: &[&str]) -> Self;
+        /// Find out if this set contains a particular `value`.
+        fn contains(&self, string: &str) -> bool;
+        /// Add a string to this set.
+        fn add(&mut self, string: &str);
+    }
+
+Fully qualified methods calls (call the exactly method of the exactly trait and type).
+
+
+.. code-block:: rust 
+
+    "hello".to_string()
+    
+    str::to_string("hello")
+
+    ToString::to_string("hello")
+
+    <str as ToString>::to_string("hello")
+
+**TODO**: Associated Types 
+
+**TODO**: Generic Traits 
+
+**TODO**: impl Trait
+
+
+Generics (Generic Types) are like templates in C++ and 
+implement the same behaviour for diferents types.
+
+Generics use Bounds to Limit supported types using syntax **<T: Write + Ord>** that 
+means all types T that implement the Write and Ordered traits. 
+
+.. code-block:: rust 
+
+    // Given two values, pick whichever one is less.
+    fn min<T: Ord>(value1: T, value2: T) -> T {
+        if value1 <= value2 {
+            value1
+        } else {
+            value2
+        }
+    }
+
+    // Subtrait syntax is just like sintatic sugar for a Bound
+    trait Creature where Self: Visible {
+    ...
+    }
+
+When bounds become to difult to write, is better to use a **where** clause:
+
+.. code-block:: rust 
+
+    fn dot<N>(v1: &[N], v2: &[N]) -> N
+        where N: Add<Output=N> + Mul<Output=N> + Default + Copy
+    {
+        let mut total = N::default();
+        for i in 0 .. v1.len() {
+            total = total + v1[i] * v2[i];
+        }
+        total
+    }
+
+
+
 Match and Patterns
 ------------------
 
 **TODO**:Using match guards
 
-
-
-Generics
---------
 
 Error Handling
 --------------
@@ -302,8 +450,11 @@ Is useful when mutability is need using **shared references** (non mutable).
 Use **Cell<T>** and **RefCell<T>**. 
 
 * **Cell<T>** allows to get/set the data without having mutable acces to the data
+
 * **RefCell<T>** is same as above, but let borrowing shared and mutables references to 
-the data. The borrowing rules are still checked, but in runtime instead of  compile 
-time. If the rules are broke, the program panics.
+  the data. The borrowing rules are still checked, but in runtime instead of  compile 
+  time. If the rules are broke, the program panics. 
+
+
 
 
