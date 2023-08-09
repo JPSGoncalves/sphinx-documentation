@@ -1,12 +1,11 @@
 
 
 
-set -xe
+set -e
 
 source $HOME/repos/personal/sphinx-documentation/automation/bash/docker.env 
 
 export TORADEX_BSP_YOCTO_IMG=crops/poky:ubuntu-22.04
-export TORADEX_BSP_YOCTO_SHARED=crops/poky:ubuntu-22.04
 export TORADEX_BSP_WORKDIR_HOST=$HOME/toradex/meta
 export TORADEX_BSP_WORKDIR_CONTAINER=/toradex-bsp
 
