@@ -1,5 +1,5 @@
-Fundamentals
-============
+Kernel Fundamentals
+===================
 
 The linux kernel map 
 https://makelinux.github.io/kernel/map/

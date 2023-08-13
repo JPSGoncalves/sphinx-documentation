@@ -48,30 +48,30 @@ Example workspace **c_cpp_properties.json**:
 .. code-block:: json 
 
     {
-    "configurations": [
-        {
-            "name": "Linux or U-Boot ARM",
-            "cStandard": "c11",
-            "intelliSenseMode": "gcc-arm",
-            "compileCommands": "${workspaceFolder}/compile_commands.json"
-            "compilerPath": "Must Define",
-        },
+        "configurations": [
+            {
+                "name": "Linux or U-Boot ARM",
+                "cStandard": "c11",
+                "intelliSenseMode": "gcc-arm",
+                "compileCommands": "${workspaceFolder}/compile_commands.json"
+                "compilerPath": "Must Define",
+            },
 
-        {
-            "name": "Linux or U-Boot ARM64",
-            "cStandard": "c11",
-            "intelliSenseMode": "gcc-arm64",
-            "compileCommands": "${workspaceFolder}/compile_commands.json"
-            "compilerPath": "Must Define",
-        },
+            {
+                "name": "Linux or U-Boot ARM64",
+                "cStandard": "c11",
+                "intelliSenseMode": "gcc-arm64",
+                "compileCommands": "${workspaceFolder}/compile_commands.json"
+                "compilerPath": "Must Define",
+            },
 
-        {
-            "name": "Linux x86",
-            "cStandard": "c11",
-            "intelliSenseMode": "gcc-x86",
-            "compileCommands": "${workspaceFolder}/compile_commands.json"
-            "compilerPath": "Must Define",
-        },
-    ],
-    "version": 4
-}
+            {
+                "name": "Linux x86",
+                "cStandard": "c11",
+                "intelliSenseMode": "gcc-x86",
+                "compileCommands": "${workspaceFolder}/compile_commands.json"
+                "compilerPath": "Must Define",
+            },
+        ],
+        "version": 4
+    }

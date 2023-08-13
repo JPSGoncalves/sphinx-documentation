@@ -13,7 +13,7 @@ Welcome to JPGoncalvesNotes's documentation!
    introduction
    sphinx 
    arm
-   linux-kernel 
+   linux
    u-boot 
    yocto
    st-micro
