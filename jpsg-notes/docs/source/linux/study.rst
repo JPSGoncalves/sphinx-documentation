@@ -1,6 +1,10 @@
 Study Planning
 ==============
 
+Techniques
+~~~~~~~~~~
+
+https://www.student.unsw.edu.au/reading-understanding
 
 Obejctives 
 ----------
@@ -26,6 +30,7 @@ TODO or  Topics Ideas
 * Display with DRM
 * Linux Device Drivers
 * SystemD 
+* FTrace
 
 
 
@@ -46,7 +51,7 @@ Linux Audio with ALSA
 ~~~~~~~~~~~~~~~~~~~~~
 * Theory - Overview
 * Theory - ALSA Fundamentals
-* Theory - ASoC
+* Theory - ASoC from Jhon Madieu Book - DAPM WM8960 Read
 * Theory and Practice - ALSA Userpace Tools
 
 Linux Device Drivers
@@ -79,6 +84,7 @@ Linux Device Drivers
 Linux Audio with ALSA
 ~~~~~~~~~~~~~~~~~~~~~
 * Practice - ALSA Tools and Alsa Userspace
+* Reading - WM8960 Kernel Driver and Datasheet
 * Practice - Simple Audio CARD MAX9854 Codec with STM32MP1
 * Practice - Simple Machine Device Driver with MAX9854 Codec for STM32MP1
 
