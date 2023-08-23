@@ -14,6 +14,7 @@ Welcome to JPGoncalvesNotes's documentation!
    sphinx 
    arm
    linux
+   embedded-linux
    u-boot 
    yocto
    st-micro
