@@ -7,6 +7,17 @@ My kit is the **STM32MP157F-DK2**.
 **Processor** - SMP Dual Cortex A7, AMP Cortex M4
 
 
+
+Useful Links 
+------------
+
+https://wiki.st.com/stm32mpu/wiki/STM32CubeProgrammer_flashlayout#Field6-_Offset
+https://wiki.st.com/stm32mpu/wiki/STM32CubeProgrammer
+https://docs.kontron-electronics.de/sw/yocto/build-stm32mp/booting-an-image.html
+https://wiki.st.com/stm32mpu/wiki/STM32_MPU_Flash_mapping
+https://wiki.st.com/stm32mpu/wiki/Boot_chain_overview
+
+
 U-boot
 -------
 
