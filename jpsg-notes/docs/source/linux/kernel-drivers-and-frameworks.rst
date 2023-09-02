@@ -1,17 +1,22 @@
 Kernel Device Drivers, Frameworks and Userspace Interface
 =========================================================
 
-
-List 
-~~~~~~~~~~~
+Linux Driver Basics 
+~~~~~~~~~~~~~~~~~~~
 * Device Driver Model
 * Device Drivers Programming Basics 
 * Kernel Threads and Sincronization
-* Plataform Drivers
-* SPI Client Drivers 
-* I2C Client Drivers 
 * Using DMA 
 * Using Interupts 
+* Device Tree 
+* Kernel Modules
+* Char Drivers
+* Plataform Drivers
+
+Linux Framework List 
+~~~~~~~~~~~~~~~~~~~~~
+* SPI Client Drivers 
+* I2C Client Drivers 
 * GPIO Framework 
 * Input Devices Framework 
 * Clock Framework 
@@ -27,3 +32,9 @@ List
 * Userspace IO Framework
 * Userpace Frameworks
 * DRM Display Framework
+* ALSA Framework
+
+
+Linux Framework - Device Tree, Kernel and Userspace Interfaces
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

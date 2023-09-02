@@ -68,6 +68,27 @@ Execute one of the commands
    bear --use-cc $CROSS_CC_PREFIX-gcc make all   
 
 
+Boot Process Overview
+---------------------
+
+
+Boot Image Formats
+------------------
+
+
+Boot FIT Images from U-boot with STM Infra 
+------------------------------------------
+
+Linux and DTB TFTP Boot with STM Infra 
+--------------------------------------
+
+
+Linux Build from Source and Update
+----------------------------------
+
+
+
+
 
 
 
