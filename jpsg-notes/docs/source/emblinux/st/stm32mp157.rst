@@ -1,0 +1,167 @@
+STM32MP157 SOC
+==============
+
+My kit is the **STM32MP157F-DK2**.
+
+**Arm ARCH**  - armv7-eabihf 
+**Processor** - SMP Dual Cortex A7, AMP Cortex M4
+
+
+
+Useful Links 
+------------
+
+https://wiki.st.com/stm32mpu/wiki/STM32CubeProgrammer_flashlayout#Field6-_Offset
+https://wiki.st.com/stm32mpu/wiki/STM32CubeProgrammer
+https://docs.kontron-electronics.de/sw/yocto/build-stm32mp/booting-an-image.html
+https://wiki.st.com/stm32mpu/wiki/STM32_MPU_Flash_mapping
+https://wiki.st.com/stm32mpu/wiki/Boot_chain_overview
+https://wiki.st.com/stm32mpu/wiki/STM32MP15_RAM_mapping
+https://wiki.st.com/stm32mpu/wiki/STM32MP15_resources#Reference_manuals
+https://wiki.st.com/stm32mpu/wiki/STM32MPU_Embedded_Software_architecture_overview
+https://wiki.st.com/stm32mpu/wiki/STM32MP15_microprocessor#Block_diagram
+https://wiki.st.com/stm32mpu/wiki/U-Boot_overview
+https://wiki.st.com/stm32mpu/wiki/STM32_header_for_binary_files
+
+
+U-boot
+-------
+
+Configs for my board 
+
+.. code-block:: console
+
+   make stm32mp15_defconfig 
+   make stm32mp15_trusted_defconfig
+   make stm32mp15_basic_defconfig 
+
+
+STM32CubeProgrammer
+-------------------
+
+https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package#Image_flashing
+
+* Used to flash memory in factory mode 
+* Use **.tvs** file as input 
+* **.tvs** file configure the binaries to use and the locations on media
+like partitions, UUID etc
+
+Writing flash with a tvs file example:
+
+.. code-block:: console
+
+    STM32_Programmer_CLI -c port=usb1 -w flashlayout_st-image-weston/optee/FlashLayout_sdcard_stm32mp157c-dk2-optee.tsv  
+
+Check DFU USB 
+
+.. code-block:: console
+
+   STM32_Programmer_CLI -l usb
+
+
+
+Boot Process Overview
+---------------------
+
+
+Boot Media Image Formats
+------------------------
+
+
+
+Booting from Networking - TFTP, NFS, PXE 
+----------------------------------------
+
+https://wiki.st.com/stm32mpu/wiki/How_to_boot_the_kernel_via_TFTP_from_U-Boot#cite_note-2
+https://elixir.bootlin.com/linux/v6.1.44/source/Documentation/admin-guide/nfs/nfsroot.rst
+https://elinux.org/TFTP_Boot_and_NFS_Root_Filesystems#NFS_Server
+
+
+* Configure U-boot networking (ipaddr, serverip)
+* Configure a TFTP server with PXE Config 
+* Configure a NFS Server 
+* Cofigure NFS root diretory path in U-boot 
+
+Server must be organized as below. The **pxe file** inside pxelinux.cfg 
+must have the name : ARP TYPE (01) + MAC_ADDR. Example for board with MAC as **10-e7-7a-e1-81-0f**. 
+
+.. code-block:: console 
+   stm32p1-tftpboot/
+   ├── pxelinux.cfg
+   │   └── 01-10-e7-7a-e1-81-0f
+   ├── stm32mp157f-dk2.dtb 
+   ├── uImage
+
+* Testing/Debug in U-boot
+
+Use **ping** to test networking connection.
+Use **tftpboot** to download a file from TFTP server to see if it works. 
+Use **pxe get** to manually get pxe booting file.
+Use **pxe boot** to boot from pxe using the kernel, dtb etc on pxe booting file.
+Check **bootargs** in pxe booting file.
+
+.. code-block:: console 
+   
+   ping ${serverip}
+   tftpboot ${pxefile_addr_r} ${serverip}:pxelinux.cfg/01-10-e7-7a-e1-81-0f
+   pxe get 
+   pxe boot
+
+
+* PXE Config File with NFS too
+
+
+
+.. code-block:: console 
+
+   menu title Select Boot Mode
+ DEFAULT nfs-static
+ TIMEOUT 50
+ LABEL sdcard
+ 	KERNEL uImage
+ 	FDT stm32mp157f-dk2.dtb
+ 	APPEND root=PARTUUID=e91c4e10-16e6-4c0e-bd0e-77becf4a3582 rootwait rw earlyprintk console=${console},${baudrate}
+ LABEL nfs-static
+ 	KERNEL uImage
+ 	FDT stm32mp157f-dk2.dtb
+	APPEND root=/dev/nfs nfsroot=${serverip}:${nfsroot_path},nfsvers=4 nfsrootdebug ip=${ipaddr}:${serverip}::::eth0:off rootwait rw earlyprintk console=${console},${baudrate}
+
+
+* NFS U-boot Configuration
+
+The variable **nfsroot_path** is custom made. It must point to THE abosule path 
+that is being exported on NSF server on HOST. DO NOT USE symbolic link path here.
+
+.. code-block:: console 
+   
+   setenv nfsroot_path /absolute/path/to/folder/being/exported
+
+
+* NFS Server File Exports 
+
+.. code-block:: console
+
+   # /etc/exports: the access control list for filesystems which may be exported
+   #		to NFS clients.  See exports(5).
+   #
+   # Example for NFSv2 and NFSv3:
+   # /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
+   #
+   # Example for NFSv4:
+   # /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
+   # /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
+   #
+   /srv/nfs4/stm32mp15-rootfs 192.168.10.2(rw,sync,no_root_squash,no_subtree_check)
+
+
+
+Using FIP Images 
+----------------
+
+
+
+
+
+
+
+

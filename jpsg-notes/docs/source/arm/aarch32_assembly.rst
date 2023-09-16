@@ -1,8 +1,6 @@
 Arm 32 bit Assembly
 =================================
 
-
-
 Compiling and Linking Assembly
 ------------------------------
 
@@ -16,7 +14,7 @@ Compiling and Linking Assembly
 Syntax
 ------
 
-.. code-block::
+.. code-block::console
 
         .data 
     str: .asciz "Hello World %d\n" @ Define a null-terminated string 
@@ -28,7 +26,7 @@ Syntax
         ldr r2, =my_global @ load pointer to global variable
         ldr r1, [r2] @ load value to r1  
         bl printf @ printf("Hello World\n"); 
-        mov r0, #0 @ move return code into r0 
+        mov r0, @ move return code into r0 
         ldmfd sp!,{lr} @ pop return address from stack 
         mov pc, lr @ return from main
 
@@ -38,8 +36,6 @@ Declaring Variables
 
 Pointers
 --------
-
-
 
 
 

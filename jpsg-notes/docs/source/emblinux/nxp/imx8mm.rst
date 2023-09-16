@@ -1,5 +1,5 @@
-IMX8M SOC
-=========
+IMX8MM SOC 
+===========
 
 SOC Overview (NXP Reference Manual)
 

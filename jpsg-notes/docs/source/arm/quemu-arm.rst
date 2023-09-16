@@ -17,10 +17,13 @@ https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/821854273/Running+Bare+Met
 https://stackoverflow.com/questions/38914019/how-to-make-bare-metal-arm-programs-and-run-them-on-qemu
 https://github.com/freedomtan/aarch64-bare-metal-qemu/tree/2ae937a2b106b43bfca49eec49359b3e30eac1b1
 https://rechtzeit.wordpress.com/2012/06/16/a-simple-bare-metal-program-arm/
+https://www.peterelst.com/configuring-gdb-for-debugging-arm-applications/
+https://surma.dev/postits/arm64/
 
 Do not forget to compile the binaries for the ARM Arch.
 
 Ubuntu
+
 -------
 Necessary packages:
 * **quemu-user** 

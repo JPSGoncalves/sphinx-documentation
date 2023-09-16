@@ -59,7 +59,6 @@ Summary:
           Maybe this is the real size of SPL.    
 
 
-
 * SPL MALLOC CONFIGURATION: how malloc is organiz on SPL 
     Before Relocation 
     Uboot Configs - CONFIG_MALLOC_F_ADDR, CCONFIG_SPL_SYS_MALLOC_F_LEN, CONFIG_SYS_SPL_MALLOC_START, CONFIG_SYS_SPL_MALLOC_SIZE

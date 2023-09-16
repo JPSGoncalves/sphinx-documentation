@@ -40,7 +40,7 @@ STEPS
 * CURRENT: 
      Enviroment SETUP
      Estimation: Two months 
-     Start Date: 02/09/2023
+     Start Date: 03/09/2023
 
 
 Enviroment SETUP 
@@ -69,11 +69,14 @@ What to do ?
 * Get boot images from diferent media 
 * Learn STM32CubeProgrammer tool 
 * Create SD card image from scracth 
-* Learn how to update only kernel and device tree 
+* Learn how to update only kernel and device tree RAM DISK, TFTP, NFS etc
+* Learn if is is possible to use SPL as SSBL 
+* Try to create a yocto layer customized for that
+* Customize u-boot script for a custom one
 
-Time: 
-* I want to take one to two months on this. 
-* Start Date: 03/09/2023
+How much time?
+* I want to take aroun one to at max two months on this. 
+
 
 
 https://wiki.st.com/stm32mpu/wiki/STM32CubeProgrammer
@@ -86,9 +89,6 @@ https://wiki.st.com/stm32mpu/wiki/How_to_manually_update_bootloaders
 https://wiki.st.com/stm32mpu/wiki/How_to_compile_the_device_tree_with_the_Developer_Package
 https://wiki.st.com/stm32mpu/wiki/How_to_cross-compile_with_the_Developer_Package
 https://wiki.st.com/stm32mpu/wiki/How_to_boot_the_kernel_via_TFTP_from_U-Boot
-
-
-
 
 
 
