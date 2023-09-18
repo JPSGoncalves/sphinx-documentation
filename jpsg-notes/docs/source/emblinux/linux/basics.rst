@@ -14,6 +14,92 @@ Tracing, Debug and Perfomance Tools List  and How To
 System Resoruces Monitoring Tools  and How To
 
 
+Compiling Out of Teee Kernel Module
+====================================
+
+**KERNEL_SRC** is the variable that point to an already build Kernel. This name 
+is also used by yocto module recipes.
+
+**M** says to KCONFIG that this is an out of tree module and **M** has the absolute 
+path to iy.
+
+Before build a kernel module, execute target modules_prepare. More important if 
+the Kernel was compiled with a build difectory. 
+
+.. code-block:: console
+    make modules_prepare 
+    make O=$BUILD_DIRECTORY_PATH modules_prepate
+
+
+* Makefile for Simple Module 
+
+
+.. code-block:: console 
+
+    obj-m := hello.o
+
+    SRC ?= $(shell pwd)
+
+    all default: modules
+
+    modules:
+        $(MAKE) -C $(KERNEL_SRC) M=$(SRC)
+
+    modules_install:
+        $(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install
+
+    clean:
+        $(MAKE) -C $(KERNEL_SRC) M=$(SRC) clean
+
+    help:
+        $(MAKE) -C $(KERNEL_SRC) M=$(SRC) clean
+
+
+
+* Install Modules 
+
+Default path for external modules is **/lib/modules/<kernel_release>/extra/**. 
+A prefix can be prepend using **INSTALL_MOD_PATH** variable. 
+
+.. code-block:: console
+    make modules_install #default path  
+    make INSTALL_MOD_PATH=/serv/nfs/rootfs modules_prepate # to /serv/nfs/rootfs/lib/modules/.. path
+
+
+If is encessary to use **sudo**, remember to pass the enviroment. 
+
+.. code-block:: console
+    sudo -E make INSTALL_MOD_PATH=/serv/nfs/rootfs modules_prepate # to /serv/nfs/rootfs/lib/modules/.. path
+
+
+
+* Using Yocto SDK to Compile Kernel Modules 
+
+https://stackoverflow.com/questions/31256770/using-populate-sdk-to-include-kernel-headers
+https://stackoverflow.com/questions/31256770/using-populate-sdk-to-include-kernel-headers
+
+
+1. Add **kernel-devsrc** to SDK
+.. code-block:: console 
+    TOOLCHAIN_TARGET_TASK += "kernel-devsrc"
+
+2. Go to kernel sources modules needed target
+
+.. code-block:: console
+    source path/to/sdk/environment-setup-aarch64-linux
+        cd -P path/to/sdk/sysroots/aarch64-linux/usr/src/kernel
+        # Note the -P argument: kernel is a symlink, in my case:
+        # path/to/sdk/sysroots/aarch64-linux/lib/modules/5.4.0-xilinx-v2020.1/build
+        make scripts
+        make modules_prepare
+
+3. Compile  
+
+.. code-block:: console
+    
+    export KERNEL_SRC=path/to/sdk/sysroots/aarch64-linux/usr/src/kernel/
+    make
+
 
 
 TFTP Boot Setup 

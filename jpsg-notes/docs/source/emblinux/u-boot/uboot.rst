@@ -154,4 +154,17 @@ For USB, you need usb gaget support and also SDP USB function support.
 
 
 
+Creating Boot Script for Distro Boot 
+------------------------------------
+
+To get the text from a **boot.src** that is a binary script, do:
+
+.. code-block:: console
+   dd if=boot.scr of=boot.script bs=72 skip=1
+
+
+To create a **boot.src** from a boot text script, do:
+
+.. code-block:: console
+   mkimage -c none -A arm -T script -d boot.script boot.scr
 

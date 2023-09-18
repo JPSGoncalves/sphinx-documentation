@@ -24,6 +24,18 @@ https://wiki.st.com/stm32mpu/wiki/U-Boot_overview
 https://wiki.st.com/stm32mpu/wiki/STM32_header_for_binary_files
 
 
+Yocto 
+-------
+
+Use repo to download layers from manifest. Original manifest is 
+https://github.com/STMicroelectronics/oe-manifest.git.
+
+.. code-block:: console
+   repo init -u repo init -u git@github.com:JPSGoncalves/stm32mp1-manifests.git -b mickledore
+   repo sync
+   
+
+
 U-boot
 -------
 
@@ -57,6 +69,11 @@ Check DFU USB
 .. code-block:: console
 
    STM32_Programmer_CLI -l usb
+
+Building Linux Kernel From STM32MP15_resources
+----------------------------------------------
+
+https://wiki.st.com/stm32mpu/wiki/Getting_started/STM32MP1_boards/STM32MP157x-DK2/Develop_on_Arm%C2%AE_Cortex%C2%AE-A7/Modify,_rebuild_and_reload_the_Linux%C2%AE_kernel
 
 
 
