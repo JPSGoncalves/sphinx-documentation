@@ -11,6 +11,52 @@ Compiling and Linking Assembly
     arm-buildroot-linux-gnueabihf-gcc  hello.o globalvar.o -o test
 
 
+To build without linking to C std lib by default use **-nostdlib** option 
+
+.. code-block:: console
+
+    arm-none-linux-gnueabihf-gcc -nostdlib gdb_training.s -o gdb_training
+
+For debugging, build with **-g**, **-g3** options 
+
+.. code-block:: console
+
+    arm-none-linux-gnueabihf-gcc -g3 gdb_training.s -o gdb_training
+
+Binarie Utilities 
+-----------------
+
+Get basic info on binary file 
+
+
+.. code-block:: console
+
+    file /path/to/file
+
+
+Debug with GDB 
+--------------
+
+https://www.youtube.com/watch?v=mm0b_H0KIRw
+https://www.youtube.com/watch?v=m4agpY_w2y8
+
+GEF - GDB Enchanced https://hugsy.github.io/gef/
+
+To debug arm code on **x86**, use **gdb-multiarch**.
+
+
+Using **GEF** GDB to debug with quemu using arm 
+
+.. code-block:: console
+    
+    gdb-multiarch gdb_training
+    #inside gef prompt 
+    gef > set arch arm 
+    gef > gef-remote --qemu-user localhost 1234 
+    #on other terminal 
+    qemu-arm -L ~/workspace/toolchain/gcc-arm-none-linux/ -g 1234 gdb_training
+
+
 Syntax
 ------
 
@@ -41,3 +87,12 @@ Pointers
 
 Calling Functions
 -------------------
+
+
+Bulding with GCC
+----------------
+
+To build whithout GCC linking to the C std lib, use **-nostdlib** option
+
+   
+

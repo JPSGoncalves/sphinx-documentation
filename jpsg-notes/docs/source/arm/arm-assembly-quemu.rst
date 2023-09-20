@@ -23,8 +23,8 @@ https://surma.dev/postits/arm64/
 Do not forget to compile the binaries for the ARM Arch.
 
 Ubuntu
-
 -------
+
 Necessary packages:
 * **quemu-user** 
 
@@ -46,8 +46,8 @@ Run aarch32 dynamic linked binaries for user space process
 
 For emulating any arm system : baremetal, bootloader etc.
 
-Running Binaries 
-----------------
+Running Binaries with Quemu
+---------------------------
 
 **-L** option is for passing compiler dynamic linker absolute path for quemu
 
@@ -56,8 +56,8 @@ Running Binaries
    qemu-aarch64 -L /usr/aarch64-linux-gnu ./hello_bin_dynamic_link
    qemu-arm -L /usr/arm-linux-gnueabihf ./hello32_bin_dynamic_link
 
-Baremetal
-----------------
+Baremetal with Quemu
+--------------------
 
 Using quemu virtual machine **virt**: 
 
@@ -84,3 +84,17 @@ Simple armv7 run whre **CROSS_CC_ARMV7** is the compiler folder path
 
 Debug
 -----
+
+* Install **gdb-multiarch**.
+* Compile code with Debug Symbols **-g**, **-g3**
+* Run quemu on a process exporting a PORT to GDB to connect 
+* Run GDB connect to QUEMU Port 
+
+.. code-block:: console
+   
+   sudo apt install gdb-multiarch
+   arm-linux-gnueabihf-gcc -ggdb3 -o hello32 hello32.c
+   qemu-arm -L /usr/arm-linux-gnueabihf -g 1234 ./hello32-static
+   gdb-multiarch -q --nh -ex 'set architecture arm' -ex 'file hello32-static' -ex 'target remote localhost:1234' -ex 'layout split' -ex 'layout regs'
+
+
