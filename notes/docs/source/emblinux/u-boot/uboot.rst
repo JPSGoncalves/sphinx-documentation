@@ -96,6 +96,11 @@ Tips and Helpers
 ----------------
 
 * To test USB Gadget, use **ums** (Usb Mass Storage). It can mount MMC in PC Host. 
+* Check u-boot make for board specific targets like **u-boot.imx**.
+* To work with nand use **mtd** and **ubi** commands. 
+* NAND devices dont support **distro** boot. 
+* U-boot initialization flow is on **board_f.c** and **board_r.c**. There are tables with all init functions. Good to get the **flow** of U-boot.
+
 
 
 Device Tree 
@@ -167,4 +172,7 @@ To create a **boot.src** from a boot text script, do:
 
 .. code-block:: console
    mkimage -c none -A arm -T script -d boot.script boot.scr
+
+
+
 
