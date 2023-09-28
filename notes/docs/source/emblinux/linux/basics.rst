@@ -102,6 +102,19 @@ https://stackoverflow.com/questions/31256770/using-populate-sdk-to-include-kerne
 
 
 
+Device Files
+============
+
+To manually create device files, use **mknod** using MAJOR and MINOR of driver. 
+
+.. code-block:: console
+    mknod -m 666 /dev/<device_name> c 243 0
+
+The files can be created dynamically by the kernel using **sysfs** api. After that
+is possible to use **udev** to load a kernel module automatically for the driver.
+
+
+
 TFTP Boot Setup 
 ===============
 
