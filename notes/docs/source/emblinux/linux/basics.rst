@@ -102,6 +102,50 @@ https://stackoverflow.com/questions/31256770/using-populate-sdk-to-include-kerne
 
 
 
+Compiling and Applying Device Tree Overlays 
+===========================================
+
+For compiling, use **dtc** device tree compilar. Yocto will install 
+it on SDK too.
+
+If use **#include** inside dts, we need to use the cpreprocessor and pass the 
+**#include** files path 
+
+.. code-block:: console
+    cpp -Ipath/to/1 -Ipath/to/2 BBORG_FAN-A000.dts -o BBORG_FAN-A000.preprocessed.dts.
+
+.. code-block:: console
+    dtc -@ -I dts -O dtb -o overlay-iniio-crazyjoy.dtb overlay-iniio-crazyjoy.dts
+
+To load overlays we need U-boot. 
+
+
+Console Log level
+=================
+https://wiki.st.com/stm32mpu/wiki/Dmesg_and_Linux_kernel_log
+
+
+To see current loglevel 
+
+.. code-block:: console
+    cat /proc/sys/kernel/printk
+
+To change loglevel in runtime 
+
+.. code-block:: console
+    echo <loglevel> > /proc/sys/kernel/printk
+
+
+KCONFIG
+=======
+
+In a module MAKEFILE, to add cflags like DEBUG, do 
+.. code-block:: console
+    obj-m := input-iio-joystick.o
+    CFLAGS_input-iio-joystick.o := -DDEBUG
+
+Debug will enable **pr_debug** and **dev_debug** messages.
+
 Device Files
 ============
 
@@ -112,6 +156,13 @@ To manually create device files, use **mknod** using MAJOR and MINOR of driver.
 
 The files can be created dynamically by the kernel using **sysfs** api. After that
 is possible to use **udev** to load a kernel module automatically for the driver.
+
+
+Device Drivers
+==============
+
+* **Nerver forget to change struct <>_driver name.** 
+* **MODULE_DEVICE_ID** will make the module be loaded automaticallyat boot if device is found.
 
 
 
